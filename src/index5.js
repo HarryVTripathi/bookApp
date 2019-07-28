@@ -17,7 +17,7 @@ router1.get('/', (req, res) => {
 /*
  * Router ka handler chalega yaa app ka handler chalega?
  * Depends.
- * If "app.use(router)" is declared above "app.get", to 
+ * If "app.use(router)" is declared above "app.get", toh 
  * router ka handler chalega.
  */
 

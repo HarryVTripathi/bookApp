@@ -6,19 +6,20 @@ import {addBook} from '../resources/addBookAsync';
 */
 
 export default function() {
-    const BkRt = express.Router();
-    BkRt.use((req, res, next) => {
-        res.append("someKey", "someValue");
-        console.log("Middleware specific to any path on this route the route BkRt");
-        console.log("This middleware will be called whenever any request comes to this route");
-        next();
-    });
+  process.stdout.write('book->');
+  const BkRt = express.Router();
+  BkRt.use((req, res, next) => {
+    res.append("someKey", "someValue");
+    console.log("Middleware specific to any path on this route the route BkRt");
+    console.log("This middleware will be called whenever any request comes to this route");
+    next();
+});
     
-    BkRt.route('/fiction/:bookId/:bookName/:genre')
-        .get((req, res) => {
-            res.send('Get fiction books by id or all fiction book')
-        })
-        .post(addBook);
-    
-    return BkRt
+BkRt.route('/fiction/:bookId/:bookName/:genre')
+  .get((req, res) => {
+    res.send('Get fiction books by id or all fiction book')
+  })
+  .post(addBook);
+
+  return BkRt;
 }
