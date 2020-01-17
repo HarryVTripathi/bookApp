@@ -1,8 +1,17 @@
-#specifying base image
+# specifying base image
+FROM python:3.7.4-alpine3.10 as pyStage
+
+# copying files from local (source) to image (destination)
+COPY package.json ./
+COPY .babelrc webpack.config.babel.js ./
+COPY src ./src/
+
+
+# ==========NODE STAGE=========
+
 FROM node:10-alpine
 
-#copying files from local (source) to image (destination)
-COPY package.json .babelrc webpack.config.babel.js ./
+COPY --from=pyStage package.json .babelrc webpack.config.babel.js ./
 COPY src ./src/
 
 #specifying commands to be executed while building the image
